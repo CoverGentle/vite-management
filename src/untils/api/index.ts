@@ -1,14 +1,11 @@
 import request from '../request/request'
 
 // 登录
-export const login = ()=>{
+export const getData = ()=>{
   return request(
     {
-      url: '/api/list',
-      method: 'post',
-      params:{
-        t:Date.now()
-      }
+      url: '/getData',
+      method: 'get',
     }
   )
 }
