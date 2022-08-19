@@ -31,8 +31,10 @@
 </template>
 
 <script setup lang='ts'>
+import { ElMessage } from 'element-plus'
 import { reactive, toRefs, ref} from 'vue';
 import { useRouter } from 'vue-router';
+import {jwtLogin }from '../untils/api/index'
   const state = reactive({
     ruleForm:{
       username:'admin',
@@ -58,10 +60,26 @@ import { useRouter } from 'vue-router';
     password:[{required:true,message:'密码不能为空',trigger:'blur'}]
   })
   // 方法
-  const submitForm = ()=>{
+  const submitForm = async ()=>{
     ruleFormRef.value.validate().then(()=>{
-      router.push('/home')
-      console.log('then');
+      jwtLogin({
+        username:ruleForm.value.username,
+        password:ruleForm.value.password
+      })
+      .then((res)=>{
+        if(res.code == 200){
+          localStorage.setItem('token',res.token)
+          router.push('/home')
+        }else{
+          console.log(res.msg);
+          ElMessage.error(res.msg)
+        }
+        // localStorage.setItem()
+        // console.log(res);
+        
+      })
+      
+      // console.log('then');
       
     }).catch(()=>{
       console.log('catch');
