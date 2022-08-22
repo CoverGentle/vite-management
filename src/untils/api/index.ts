@@ -5,7 +5,7 @@ import request from '../request/request'
 export const jwtLogin = (data: AdminLoginData): Promise<AdminLoginRes> => request.post('/jwtLogin', data)
 
 // 获取数据
-export const jwtGetMessage = ()=>request.get('/jwtMessage')
+export const jwtGetMessage = ():Promise<AdminLoginRes>=>request.get('/jwtMessage')
 // {
 //   return request(
 //     {

@@ -7,22 +7,32 @@
 </template>
 
 <script setup lang='ts'>
-import {onMounted, reactive, ref, toRefs} from 'vue'
-import {jwtGetMessage} from '../../untils/api/index'
+import { onMounted, reactive, ref, toRefs } from 'vue'
+import { jwtGetMessage } from '../../untils/api/index'
+import { ElMessage } from 'element-plus'
 
-const getMesssage = ()=>{
-  jwtGetMessage().then(res=>{
-    console.log(res);
-    
+const getMesssage = () => {
+  jwtGetMessage().then(res => {
+    if (res.code === 200) {
+      ElMessage({
+        message: res.msg,
+        type: 'success',
+      })
+    }else{
+      ElMessage({
+        message: res.msg,
+        type: 'error',
+      })
+    }
+
   })
 }
 
-const removeToken = () =>{
+const removeToken = () => {
   localStorage.removeItem('token')
   // location.reload()
 }
 </script>
 
 <style lang='less' scoped>
-  
 </style>

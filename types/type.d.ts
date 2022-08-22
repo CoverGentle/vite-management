@@ -9,6 +9,6 @@ interface AdminLoginData{
 
 interface AdminLoginRes{
   code:number,
-  token:string
+  token?:string
   msg:string
 }
