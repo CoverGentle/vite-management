@@ -9,7 +9,6 @@ const routes:RouteRecordRaw[] = [
     path:'/',
     redirect:'/home'
   },
-  
   {
     path:'/login',
     name:'login',
@@ -28,20 +27,19 @@ const router = createRouter({
   routes: routes
 })
 
-router.beforeEach((from,to,next)=>{
-  console.log(to.path);
+
+router.beforeEach((to,from,next)=>{
   if(to.path === "/login"){
     next()
   }else{
-    console.log();
-    if(localStorage.getItem("token")){
+    if(localStorage.getItem('token')){
       next()
     }else{
-      next()
+      next("/login")
     }
-    
   }
 })
+
 
 
 
