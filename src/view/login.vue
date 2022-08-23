@@ -31,26 +31,55 @@
 </template>
 
 <script setup lang='ts'>
+import { ElMessage } from 'element-plus'
 import { reactive, toRefs, ref} from 'vue';
+import { useRouter } from 'vue-router';
+import {jwtLogin }from '../untils/api/index'
   const state = reactive({
     ruleForm:{
-      username:'',
-      password:''
+      username:'admin',
+      password:'123456'
     }
   })
+  let router = useRouter()
   // 校验规则
   let {ruleForm} = toRefs(state)
   // 获取el-form的对象
   let ruleFormRef = ref()
+  // 自定义校验密码
+  // const validatePassword = (rule:unknown,value:any,callback:any) =>{
+  //   if(value == ""){
+  //     callback(new Error('请输入密码'))
+  //   }else if(value.length<6){
+  //     callback(new Error('密码不少于6位'))
+  //   }
+  // }
   // rules校验规则
   const rules = reactive({
     username:[{required:true,message:'用户名不能为空',trigger:'blur'}],
     password:[{required:true,message:'密码不能为空',trigger:'blur'}]
   })
   // 方法
-  const submitForm = ()=>{
+  const submitForm = async ()=>{
     ruleFormRef.value.validate().then(()=>{
-      console.log('then');
+      jwtLogin({
+        username:ruleForm.value.username,
+        password:ruleForm.value.password
+      })
+      .then((res)=>{
+        if(res.code == 200){
+          localStorage.setItem('token',res.token)
+          router.push('/home')
+        }else{
+          console.log(res.msg);
+          ElMessage.error(res.msg)
+        }
+        // localStorage.setItem()
+        // console.log(res);
+        
+      })
+      
+      // console.log('then');
       
     }).catch(()=>{
       console.log('catch');
@@ -61,7 +90,7 @@ import { reactive, toRefs, ref} from 'vue';
 
 <style lang='less' scoped>
  .box-card {
-   width: 450px;
+   width: 400px;
    padding: 10px;
    position: absolute;
    left: 50%;
