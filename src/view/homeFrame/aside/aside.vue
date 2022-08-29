@@ -1,68 +1,70 @@
 <template>
-  <el-row class="tac">
-    <el-col :span="24">
-    <!-- @open="handleOpen" @close="handleClose" router -->
-      <el-menu default-active="2" class="el-menu-vertical-demo">
-        <el-menu-item index="/mainhome">
-          <i class="el-icon-menu"></i>
-          <span slot="title">首页</span>
-        </el-menu-item>
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>elementUI</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/elCalendar">EL日历</el-menu-item>
-            <!-- <el-menu-item index="1-2">选项2</el-menu-item> -->
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="2">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>vantUI</span>
-          </template>
-          <el-menu-item-group>
-            <!-- <template slot="title">分组一</template> -->
-            <el-menu-item index="/calendar">日历</el-menu-item>
-            <!-- <el-menu-item index="1-2">选项2</el-menu-item> -->
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="3">
-          <template slot="title">
-            <i class="el-icon-menu"></i>
-            <span slot="title">系统维护</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/setting">系统设置</el-menu-item>
-            <el-menu-item index="/about">关于</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="4">
-          <template slot="title">
-            <i class="el-icon-menu"></i>
-            <span slot="title">造轮子</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/dome1">轮子1</el-menu-item>
-            <el-menu-item index="/dome3">轮子2</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <!-- <el-menu-item index="vantUI">
-        <i class="el-icon-setting"></i>
-        <span slot="title">vantUI</span>
-        <el-menu-item-group>
-          <template slot="title" index="/calendar">日历</template>
-        </el-menu-item-group>
-      </el-menu-item> -->
-      </el-menu>
-    </el-col>
-  </el-row>
+  <div class="aside-contianer">
+    <el-menu default-active="/firstView" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+    <!-- <el-sub-menu index="1">
+      <template #title>
+        <el-icon>
+          <location />
+        </el-icon>
+        <span>Navigator One</span>
+      </template>
+      <el-menu-item-group title="Group One">
+        <el-menu-item index="1-1">item one</el-menu-item>
+        <el-menu-item index="1-2">item two</el-menu-item>
+      </el-menu-item-group>
+      <el-menu-item-group title="Group Two">
+        <el-menu-item index="1-3">item three</el-menu-item>
+      </el-menu-item-group>
+      <el-sub-menu index="1-4">
+        <template #title>item four</template>
+        <el-menu-item index="1-4-1">item one</el-menu-item>
+      </el-sub-menu>
+    </el-sub-menu> -->
+    <el-menu-item index="/firstView">
+      <el-icon>
+        <icon-menu />
+      </el-icon>
+      <span>首页</span>
+    </el-menu-item>
+    <el-menu-item index="/userManagement">
+      <el-icon><User /></el-icon>
+      <span>用户管理</span>
+    </el-menu-item>
+    <!-- <el-menu-item index="3" disabled>
+      <el-icon>
+        <document />
+      </el-icon>
+      <span>Navigator Three</span>
+    </el-menu-item> -->
+    <el-menu-item index="/setting">
+      <el-icon>
+        <setting />
+      </el-icon>
+      <span>系统设置</span>
+    </el-menu-item>
+  </el-menu>
+  </div>
 </template>
 
 <script setup lang='ts'>
-
+import {
+  Document,
+  Menu as IconMenu,
+  Location,
+  User,
+  Setting,
+} from '@element-plus/icons-vue'
+import { reactive, ref, toRefs } from 'vue'
+const handleOpen = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const handleClose = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
 </script>
 
-<style>
+<style lang='less' scoped>
+.aside-contianer{
+  height: 100%;
+}
 </style>

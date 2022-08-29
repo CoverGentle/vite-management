@@ -17,7 +17,28 @@ const routes:RouteRecordRaw[] = [
   {
     path:'/home',
     name:'home',
-    component:()=>import('../view/homepage/home.vue')
+    component:()=>import('../view/homepage/home.vue'),
+    children:[
+      {
+        path:'/home',
+        redirect:'/firstView'
+      },
+      {
+        path:'/firstView',
+        name:'firstView',
+        component:()=>import('../view/pages/firstView.vue')
+      },
+      {
+        path:'/setting',
+        name:'setting',
+        component:()=>import('../view/pages/setting.vue')
+      },
+      {
+        path:'/userManagement',
+        name:'userManagement',
+        component:()=>import('../view/pages/userManagement.vue')
+      }
+    ]
   }
 ]
 

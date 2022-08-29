@@ -37,8 +37,8 @@ import { useRouter } from 'vue-router';
 import {jwtLogin }from '../untils/api/index'
   const state = reactive({
     ruleForm:{
-      username:'admin',
-      password:'123456'
+      username:'',
+      password:''
     }
   })
   let router = useRouter()
@@ -67,11 +67,11 @@ import {jwtLogin }from '../untils/api/index'
         password:ruleForm.value.password
       })
       .then((res)=>{
-        if(res.code == 200){
+        if(res.code == 2000){
           localStorage.setItem('token',res.token)
           router.push('/home')
+          ElMessage.success(res.msg)
         }else{
-          console.log(res.msg);
           ElMessage.error(res.msg)
         }
         // localStorage.setItem()

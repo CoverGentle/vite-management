@@ -2,10 +2,23 @@ import request from '../request/request'
 
 
 // 登录
-export const jwtLogin = (data: AdminLoginData): Promise<AdminLoginRes> => request.post('/jwtLogin', data)
+export const jwtLogin = (data: AdminLoginData)=>{
+  return request<AdminLoginRes>({
+    url: '/user/login',
+    method: 'post',
+    data
+  })
+}
 
-// 获取数据
-export const jwtGetMessage = ():Promise<AdminLoginRes>=>request.get('/jwtMessage')
+// 获取用户列表
+export const getUserList = ()=>{
+  return request<UserList>(
+        {
+          url: '/user',
+          method: 'get',
+        }
+      )
+}
 // {
 //   return request(
 //     {
