@@ -19,12 +19,13 @@ export const getUserList = ()=>{
         }
       )
 }
-// {
-//   return request(
-//     {
-//       url: '/jwtLogin',
-//       method: 'post',
-//       data
-//     }
-//   )
-// }
+// 注册
+export const registerUser = (data:{username:string,password:string})=>{
+  return request(
+    {
+      url: '/user/register',
+      method: 'post',
+      data
+    }
+    )
+}

@@ -21,4 +21,7 @@ import Header from '../homeFrame/header/header.vue';
 </script>
 
 <style lang='less' scoped>
+  .el-container{
+    height: 100%;
+  }
 </style>

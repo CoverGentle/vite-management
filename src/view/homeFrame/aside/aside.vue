@@ -1,6 +1,6 @@
 <template>
   <div class="aside-contianer">
-    <el-menu default-active="/firstView" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+    <el-menu  default-active="/firstView" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
     <!-- <el-sub-menu index="1">
       <template #title>
         <el-icon>

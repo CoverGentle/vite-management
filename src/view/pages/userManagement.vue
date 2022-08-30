@@ -3,7 +3,9 @@
     <el-table :data="tableData" style="width: 100%">
     <el-table-column prop="id" label="id" width="180" />
     <el-table-column prop="username" label="账号" width="180" />
-    <el-table-column label="Operations">
+    <el-table-column prop="createdAt" label="创建时间" width="220" />
+    <el-table-column prop="updatedAt" label="更新时间" width="220" />
+    <el-table-column label="操作">
       <template #default="scope">
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
           >Edit</el-button
