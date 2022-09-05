@@ -147,12 +147,11 @@ const acceptForm = ()=>{
     .card-header {
       text-align: center;
     }
-
   }
 
   .loginForm {
     .btn-primary {
-      /deep/ .el-form-item__content {
+      .deep(el-form-item__content){
         justify-content: center;
 
         .el-button {
