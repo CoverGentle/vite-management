@@ -31,3 +31,25 @@ export const getUserList = () => {
     }
   )
 }
+
+// 获取城市列表
+
+export const getCityeList = ()=>{
+  return request(
+  {
+    url:'/weather/city',
+    method:'get'
+  }
+  )
+}
+
+// 获取城市天气信息
+export const getWeather = (data:{cityNum:string})=>{
+  return request<CityWeaher>(
+    {
+      url:'/weather/single',
+      method:'post',
+      data
+    }
+  )
+}

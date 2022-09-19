@@ -1,7 +1,13 @@
 <template>
   <div class="top-select">
-    <el-select class="m-2" placeholder="Select">
-      <el-option />
+    <el-select v-model="cityValue" class="m-2" @change="selectValue(cityValue)" placeholder="Select">
+      <el-option 
+      v-for="item in cityList" 
+      :key="item.citynumber"
+      :label="item.cityname"
+      :value="item.citynumber"
+      
+      />
     </el-select>
   </div>
   <div class="contianer">
@@ -17,8 +23,51 @@
 </template>
 
 <script setup lang='ts'>
-import { reactive, ref, toRefs } from 'vue'
+import { onMounted, reactive, ref, toRefs } from 'vue'
+import {getCityeList,getWeather} from '../../untils/api/index'
+const cityValue = ref('上海')
+const cityInfo = reactive<{
+  cityList:City[]
+}>({
+  cityList:[]
+})
+const {cityList} = toRefs(cityInfo)
+onMounted(()=>{
+  getCityList(),
+  selectValue('101020100')
+})
+// 
+const getCityList = ()=>{
+  getCityeList().then(res=>{
+    console.log(res,'getCityList');
+    if(res.code === 2000){
+      cityList.value = res.data
+    }
+  })
+}
 
+// 获取城市天气信息
+const data = reactive<{
+  weatherList:WeatherInfos[]
+}>({
+  weatherList:[]
+})
+const weatherList = toRefs(data)
+
+
+// select的change方法
+const selectValue = (val:string)=>{
+  console.log(val);
+  getWeather({
+    cityNum:val
+  }).then(res=>{
+    // let c = weatherList
+    // weatherList = res.data.weatherInfo
+    console.log(res.data.weatherInfo,'selectValue');
+    
+  })
+
+}
 </script>
 
 <style lang='less' scoped>
