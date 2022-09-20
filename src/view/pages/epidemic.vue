@@ -1,11 +1,13 @@
 <template>
   <div>
+    
     <el-table :data="tableData" style="width: 100%">
     <el-table-column prop="name" label="城市" width="180" />
     <el-table-column prop="dead" label="累计死亡" width="180" />
     <el-table-column prop="nowConfirm" label="现有确诊" />
     <el-table-column prop="confirm" label="累计确诊" />
   </el-table>
+  <el-pagination></el-pagination>
   </div>
 </template>
 

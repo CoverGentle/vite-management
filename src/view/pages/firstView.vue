@@ -58,6 +58,9 @@ import Pie from '../../components/echarts/pie.vue';
       display: block;
       .card-box{
         height: 100%;
+        :deep(.el-card__body){
+          height: 100%;
+        }
       }
     }
     .contianer-down-right{
@@ -66,6 +69,9 @@ import Pie from '../../components/echarts/pie.vue';
       display: block;
       .card-box{
         height: 100%;
+        :deep(.el-card__body){
+          height: 100%;
+        }
       }
     }
   }
