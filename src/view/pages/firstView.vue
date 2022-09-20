@@ -1,103 +1,73 @@
 <template>
-  <div class="top-select">
-    <el-select v-model="cityValue" class="m-2" @change="selectValue(cityValue)" placeholder="Select">
-      <el-option 
-      v-for="item in cityList" 
-      :key="item.citynumber"
-      :label="item.cityname"
-      :value="item.citynumber"
-      
-      />
-    </el-select>
-  </div>
   <div class="contianer">
-    <el-card shadow="always" class="box-card left">
-      <!--  -->
-    </el-card>
-    <el-card shadow="always" class="box-card center">
-    </el-card>
-    <el-card shadow="always" class="box-card right">
-    </el-card>
+    <div class="contianer-top">
+      <el-card shadow="always" v-for="item in 4" class="card-box">
+        {{item}}
+      </el-card>
+    </div>
+    <div class="contianer-down">
+      <div class="contianer-down-left"> 
+        <el-card shadow="always" class="card-box">
+          <ColumnBar/>
+        </el-card>
+      </div>
+      <div class="contianer-down-right">
+        <el-card shadow="always" class="card-box">
+          <Pie/>
+        </el-card>
+      </div>
+    </div>
   </div>
-  <div></div>
 </template>
 
 <script setup lang='ts'>
-import { onMounted, reactive, ref, toRefs } from 'vue'
-import {getCityeList,getWeather} from '../../untils/api/index'
-const cityValue = ref('上海')
-const cityInfo = reactive<{
-  cityList:City[]
-}>({
-  cityList:[]
-})
-const {cityList} = toRefs(cityInfo)
-onMounted(()=>{
-  getCityList(),
-  selectValue('101020100')
-})
-// 
-const getCityList = ()=>{
-  getCityeList().then(res=>{
-    console.log(res,'getCityList');
-    if(res.code === 2000){
-      cityList.value = res.data
-    }
-  })
-}
-
-// 获取城市天气信息
-const data = reactive<{
-  weatherList:WeatherInfos[]
-}>({
-  weatherList:[]
-})
-const weatherList = toRefs(data)
-
-
-// select的change方法
-const selectValue = (val:string)=>{
-  console.log(val);
-  getWeather({
-    cityNum:val
-  }).then(res=>{
-    // let c = weatherList
-    // weatherList = res.data.weatherInfo
-    console.log(res.data.weatherInfo,'selectValue');
-    
-  })
-
-}
+import { reactive, ref, toRefs } from 'vue'
+import ColumnBar from '../../components/echarts/columnBar.vue'
+import Pie from '../../components/echarts/pie.vue';
 </script>
 
 <style lang='less' scoped>
-  .top-select{
-    padding: 10px;
-  }
 .contianer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: space-around;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 
-  .box-card {
-    width: 15rem;
-    height: 100%;
-    border-radius: 10px;
+  .contianer-top {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .card-box {
+      width: 22%;
+      height: 70%;
+      padding: 5px;
+      border-radius: 8px;
+    }
   }
 
-  .left {
-    background: blue;
-  }
-
-  .center {
-    background: green;
-  }
-
-  .right {
-    background: red;
+  .contianer-down {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .contianer-down-left{
+      width: 49%;
+      height: 100%;
+      display: block;
+      .card-box{
+        height: 100%;
+      }
+    }
+    .contianer-down-right{
+      width: 49%;
+      height: 100%;
+      display: block;
+      .card-box{
+        height: 100%;
+      }
+    }
   }
 }
 </style>

@@ -53,3 +53,14 @@ export const getWeather = (data:{cityNum:string})=>{
     }
   )
 }
+
+// 获取疫情数据
+
+export const getEpidemicInfo = ()=>{
+  return request<epidemicInfo>(
+  {
+    url:'/epidemic/info',
+    method:'get'
+  }
+  )
+}

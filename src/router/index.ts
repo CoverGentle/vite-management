@@ -37,6 +37,16 @@ const routes:RouteRecordRaw[] = [
         path:'/userManagement',
         name:'userManagement',
         component:()=>import('../view/pages/userManagement.vue')
+      },
+      {
+        path:'/weather',
+        name:'weather',
+        component:()=>import('../view/pages/weather.vue')
+      },
+      {
+        path:'/epidemic',
+        name:'epidemic',
+        component:()=>import('../view/pages/epidemic.vue')
       }
     ]
   }

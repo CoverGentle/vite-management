@@ -42,6 +42,18 @@
       </el-icon>
       <span>系统设置</span>
     </el-menu-item>
+    <el-menu-item index="/weather">
+      <el-icon>
+        <MostlyCloudy />
+      </el-icon>
+      <span>天气情况</span>
+    </el-menu-item>
+    <el-menu-item index="/epidemic">
+      <el-icon>
+        <MapLocation />
+      </el-icon>
+      <span>疫情情况</span>
+    </el-menu-item>
   </el-menu>
   </div>
 </template>
@@ -51,6 +63,8 @@ import {
   Document,
   Menu as IconMenu,
   Location,
+  MapLocation,
+  MostlyCloudy,
   User,
   Setting,
 } from '@element-plus/icons-vue'
