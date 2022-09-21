@@ -85,6 +85,7 @@ const jump =()=>{
       width: 9rem;
       display: flex;
       justify-content: center;
+      cursor: pointer;
       img{
         width: 25px;
         height: auto;
