@@ -1,10 +1,14 @@
 <template>
   <div class="header-container">
-    <div>
+    <div class="logo-box">
       <h3>logo</h3>
     </div>
-    <div class="avater">
-      
+    <div class="header-right">
+      <div class="github-box" @click="jump">
+        <img :src="githubUrl" alt="">
+        <p>GITHUB</p>
+      </div>
+      <div class="avater">
       <el-dropdown>
         <span class="el-dropdown-link">
           <el-avatar size="small" :src="circleUrl" />
@@ -21,11 +25,14 @@
         </template>
       </el-dropdown>
     </div>
+    </div>
+    
   </div>
 </template>
 
 <script setup lang='ts'>
 import { reactive, ref, toRefs } from 'vue'
+import githubUrl from '../../../assets/images/github.png'
 import {
   ArrowDown,
   Check,
@@ -46,6 +53,10 @@ const removeUser = ()=>{
   localStorage.removeItem('token')
   location.reload()
 }
+
+const jump =()=>{
+  window.open('https://github.com/CoverGentle/vite-management')
+}
 </script>
 
 <style lang='less' scoped>
@@ -56,5 +67,35 @@ const removeUser = ()=>{
    align-items: center;
    flex-direction: row;
    border-bottom: 1px solid #ccc;
+   .logo-box{
+    width: var(--el-aside-width,180px);
+    height: 59px;
+    line-height: 100%;
+    h3{
+      height: 100%;
+      line-height: 59px;
+    }
+   }
+   .header-right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    .github-box{
+      width: 9rem;
+      display: flex;
+      justify-content: center;
+      img{
+        width: 25px;
+        height: auto;
+      }
+      P{
+        font-size: 14px;
+        margin-left: 10px;
+        line-height: 2;
+        font-weight: 600;
+      }
+    }
+   }
  }
 </style>
