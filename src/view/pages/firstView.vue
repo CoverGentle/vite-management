@@ -1,8 +1,17 @@
 <template>
   <div class="contianer">
     <div class="contianer-top">
-      <el-card shadow="always" v-for="item in 4" class="card-box">
-        {{item}}
+      <el-card shadow="always"  class="card-box">
+        新增用户
+      </el-card>
+      <el-card shadow="always"  class="card-box">
+        用户总量
+      </el-card>
+      <el-card shadow="always"  class="card-box">
+        
+      </el-card>
+      <el-card shadow="always"  class="card-box">
+        
       </el-card>
     </div>
     <div class="contianer-down">
