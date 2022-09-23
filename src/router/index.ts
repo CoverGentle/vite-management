@@ -12,12 +12,12 @@ const routes:RouteRecordRaw[] = [
   {
     path:'/login',
     name:'login',
-    component:()=>import('../view/login.vue')
+    component:()=>import('@/view/login.vue')
   },
   {
     path:'/home',
     name:'home',
-    component:()=>import('../view/homepage/home.vue'),
+    component:()=>import('@/view/homepage/home.vue'),
     children:[
       {
         path:'/home',
@@ -26,27 +26,27 @@ const routes:RouteRecordRaw[] = [
       {
         path:'/firstView',
         name:'firstView',
-        component:()=>import('../view/pages/firstView.vue')
+        component:()=>import('@/view/pages/firstView.vue')
       },
       {
         path:'/setting',
         name:'setting',
-        component:()=>import('../view/pages/setting.vue')
+        component:()=>import('@/view/pages/setting.vue')
       },
       {
         path:'/userManagement',
         name:'userManagement',
-        component:()=>import('../view/pages/userManagement.vue')
+        component:()=>import('@/view/pages/userManagement.vue')
       },
       {
         path:'/weather',
         name:'weather',
-        component:()=>import('../view/pages/weather.vue')
+        component:()=>import('@/view/pages/weather.vue')
       },
       {
         path:'/epidemic',
         name:'epidemic',
-        component:()=>import('../view/pages/epidemic.vue')
+        component:()=>import('@/view/pages/epidemic.vue')
       }
     ]
   }

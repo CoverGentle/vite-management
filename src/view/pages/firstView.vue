@@ -33,6 +33,7 @@
 import { reactive, ref, toRefs } from 'vue'
 import ColumnBar from '../../components/echarts/columnBar.vue'
 import Pie from '../../components/echarts/pie.vue';
+
 </script>
 
 <style lang='less' scoped>

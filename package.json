@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "build:dev": "vue-tsc --noEmit && vite build --mode development",
+    "build:pro": "vue-tsc --noEmit && vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -19,6 +21,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/node": "^18.7.18",
     "@vitejs/plugin-vue": "^3.0.2",
     "typescript": "^4.6.4",
     "vite": "^3.0.6",
