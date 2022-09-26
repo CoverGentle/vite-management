@@ -2,15 +2,15 @@
   <div>
     <el-card shadow="hover" class="search-card">
       <div class="search-card-box">
-        <el-input v-model="inputInfo" class="w-50 m-2"  placeholder="请输入" />
-        <el-button type="primary" @click="searchCity" :icon="Search">Search</el-button>
+        <el-input v-model="inputInfo" class="w-50 m-2" :placeholder="$t('button.input')" />
+        <el-button type="primary" @click="searchCity" :icon="Search"> {{$t('button.search')}} </el-button>
       </div>
     </el-card>
     <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="name" label="城市" width="180" />
-      <el-table-column prop="dead" label="累计死亡" width="180" />
-      <el-table-column prop="nowConfirm" label="现有确诊" />
-      <el-table-column prop="confirm" label="累计确诊" />
+      <el-table-column prop="name" :label="$t('table.city')" width="180" />
+      <el-table-column prop="dead" :label="$t('table.cumulativemotality')" width="180" />
+      <el-table-column prop="nowConfirm" :label="$t('table.nowDefineite')" />
+      <el-table-column prop="confirm" :label="$t('table.defineite')" />
     </el-table>
     <el-pagination @size-change="handleSizeChange" :hide-on-single-page="true" @current-change="handleCurrentChange"
       :current-page.sync="paginations.page_index" :page-sizes="paginations.page_sizes"
@@ -23,11 +23,14 @@ import { onMounted, reactive, ref, toRefs } from 'vue'
 import { getEpidemicInfo } from '../../untils/api/index'
 import {
   Search
-}from '@element-plus/icons-vue'
+} from '@element-plus/icons-vue'
+import { useI18n } from "vue-i18n";
 onMounted(() => {
   getEpidemicInfos()
 })
 
+
+const { t } = useI18n();
 const tableDatas = reactive<{
   tableData: {
     name: string, //姓名
@@ -115,30 +118,34 @@ const handleSizeChange = (page_size: number) => {
 
 // 查询搜索
 const inputInfo = ref('')
-const searchCity = ()=>{
-  console.log(inputInfo.value,'inputInfo');
-  
+const searchCity = () => {
+  console.log(inputInfo.value, 'inputInfo');
+
 }
 
 </script>
 
 <style lang='less' scoped>
-  .el-table{
-    margin-top: 1rem;
-  }
+.el-table {
+  margin-top: 1rem;
+}
+
 .el-pagination {
   justify-content: flex-end;
   margin-top: 10px;
 }
-.search-card{
+
+.search-card {
+
   // width: 100%;
   // display: flex;
-  .search-card-box{
+  .search-card-box {
     display: flex;
     justify-content: flex-end;
     align-content: center;
     align-items: center;
-    .el-input{
+
+    .el-input {
       width: 12rem;
       margin-right: 1rem;
     }

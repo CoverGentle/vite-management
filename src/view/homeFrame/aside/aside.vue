@@ -1,6 +1,9 @@
 <template>
   <div class="aside-contianer">
-    <el-menu  default-active="/firstView" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+    <div class="asideButton" @click="toggleCollapse">
+      <p>|||</p>
+    </div>
+    <el-menu :collapse="isCollapse" default-active="/firstView" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
     <!-- <el-sub-menu index="1">
       <template #title>
         <el-icon>
@@ -24,11 +27,11 @@
       <el-icon>
         <icon-menu />
       </el-icon>
-      <span>首页</span>
+      <span>{{ $t('menus.home') }}</span>
     </el-menu-item>
     <el-menu-item index="/userManagement">
       <el-icon><User /></el-icon>
-      <span>用户管理</span>
+      <span>{{ $t('menus.user') }}</span>
     </el-menu-item>
     <!-- <el-menu-item index="3" disabled>
       <el-icon>
@@ -40,19 +43,19 @@
       <el-icon>
         <setting />
       </el-icon>
-      <span>系统设置</span>
+      <span>{{$t('menus.setting')}}</span>
     </el-menu-item>
     <el-menu-item index="/weather">
       <el-icon>
         <MostlyCloudy />
       </el-icon>
-      <span>天气情况</span>
+      <span>{{$t('menus.weather')}}</span>
     </el-menu-item>
     <el-menu-item index="/epidemic">
       <el-icon>
         <MapLocation />
       </el-icon>
-      <span>疫情情况</span>
+      <span>{{$t('menus.epidemic')}}</span>
     </el-menu-item>
   </el-menu>
   </div>
@@ -69,16 +72,41 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 import { reactive, ref, toRefs } from 'vue'
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+const isCollapse = ref(false)
+const emit =defineEmits<{  
+  (event: 'changeWidth', id: boolean): void
+ }>()
+const toggleCollapse = ()=>{
+  isCollapse.value = !isCollapse.value
+  emit('changeWidth',isCollapse.value)
+}
 </script>
 
 <style lang='less' scoped>
 .aside-contianer{
   height: 100%;
+  .asideButton{
+    // width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #fff;
+    padding: 0 24px;
+    p{
+      width: 100%;
+    }
+  }
 }
+// .el-menu-vertical-demo:not(.el-menu--collapse) {
+//   width: 200px;
+//   min-height: 400px;
+// }
 </style>
