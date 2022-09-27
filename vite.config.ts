@@ -14,6 +14,7 @@ export default (({ mode }: any) => {
       alias: {
         '@': path.resolve(__dirname, 'src'),
         "assets": path.resolve(__dirname, "src/assets"),
+        'vue-i18n':'vue-i18n/dist/vue-i18n.cjs.js'
       }
     },
     server: {
