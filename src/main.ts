@@ -7,6 +7,18 @@ import 'element-plus/dist/index.css'
 import {initRouter} from './router'
 import i18n from './i18n/index'
 
+// markdown
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+
+import Prism from 'prismjs';
+
+VueMarkdownEditor.use(vuepressTheme, {
+  Prism,
+});
+
 
  const app = createApp(App)
 //  app.use(router)
@@ -14,4 +26,5 @@ import i18n from './i18n/index'
 initRouter(app)
 app.use(ElementPlus)
 app.use(i18n)
+app.use(VueMarkdownEditor)
 app.mount('#app')

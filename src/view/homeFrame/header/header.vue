@@ -1,13 +1,16 @@
 <template>
   <div class="header-container">
-    <div class="logo-box">
-      <h3>logo</h3>
+    <div class="header-left">
+      <div class="icon" @click="handleIcon">
+        <Expand v-if="isAll"  />
+        <Fold v-else />
+      </div>
     </div>
     <div class="header-right">
       <div class="change-language">
         <el-dropdown @command="handleCommand">
           <span class="language-box">
-            <img :src="languageUrl" alt=""/>
+            <img :src="languageUrl" alt="" />
           </span>
           <template #dropdown>
             <el-dropdown-menu>
@@ -39,7 +42,6 @@
         </el-dropdown>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -55,31 +57,42 @@ import {
   CirclePlusFilled,
   UserFilled,
   Close,
-  Plus,
+  Fold,
+  Expand
 } from '@element-plus/icons-vue'
 import { useI18n } from 'vue-i18n'
-
-const {t} = useI18n()
+const emit = defineEmits<{
+  (event: 'command', id: any): void
+  (event: 'handleShowMore', id: any): void
+}>()
+const { t } = useI18n()
 const state = reactive({
   circleUrl:
     'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
 })
 const { circleUrl } = toRefs(state)
-
+// 注销
 const removeUser = () => {
   localStorage.removeItem('token')
   location.reload()
 }
 
+// 跳转
 const jump = () => {
   window.open('https://github.com/CoverGentle/vite-management')
 }
 
+// 菜单栏伸缩
+const isAll = ref(false)
+const handleIcon = () => {
+  isAll.value = !isAll.value
+  
+  emit("handleShowMore",isAll)
+}
+
 // 国际化
 // const emit = defineEmits(['CommandClick'])
-const emit = defineEmits<{  
-  (event: 'command', id: any): void
- }>()
+
 const handleCommand = (command: any) => {
   // ElMessage(`click on item ${command}`)
   emit("command", command)
@@ -88,21 +101,30 @@ const handleCommand = (command: any) => {
 
 <style lang='less' scoped>
 .header-container {
-  height: 59px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   border-bottom: 1px solid #ccc;
 
-  .logo-box {
-    width: var(--el-aside-width, 180px);
-    height: 59px;
-    line-height: 100%;
+  .header-left {
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
 
-    h3 {
-      height: 100%;
-      line-height: 59px;
+  .asideButton {
+    // width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #fff;
+    padding: 0 24px;
+
+    p {
+      width: 100%;
     }
   }
 
@@ -111,14 +133,16 @@ const handleCommand = (command: any) => {
     justify-content: flex-end;
     align-items: center;
     flex-direction: row;
-    .change-language{
-      .language-box{
+
+    .change-language {
+      .language-box {
         img {
-        width: 25px;
-        height: auto;
+          width: 20px;
+          height: auto;
         }
       }
     }
+
     .github-box {
       width: 9rem;
       display: flex;
