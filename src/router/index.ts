@@ -57,6 +57,14 @@ const routes:RouteRecordRaw[] = [
         component:()=>import('@/view/pages/userManagement.vue')
       },
       {
+        path:'/wechatUser',
+        name:'wechatUser',
+        meta: {
+          title: '微信用户'
+        },
+        component:()=>import('@/view/pages/wechatUser.vue')
+      },
+      {
         path:'/weather',
         name:'weather',
         meta: {
@@ -87,6 +95,14 @@ const routes:RouteRecordRaw[] = [
           title: '富文本框'
         },
         component:()=>import('@/view/pages/quill.vue')
+      },
+      {
+        path:'/calendar',
+        name:'calendar',
+        meta: {
+          title: '日历组件'
+        },
+        component:()=>import('@/view/pages/calendar.vue')
       }
     ]
   }

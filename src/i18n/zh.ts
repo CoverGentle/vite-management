@@ -2,13 +2,16 @@ export default {
   // 菜单
   menus: {
     home: '首页',
-    user:'用户',
+    user:'用户管理',
+    systemUser:'系统用户',
+    wechatUser:'微信用户',
     setting:'系统设置',
     weather:'天气预报',
     epidemic:'疫情数据',
     component:'组件库',
     markdown:'markdown',
-    quill:'富文本'
+    quill:'富文本',
+    calendar:'日历'
   },
   // 表格
   table:{

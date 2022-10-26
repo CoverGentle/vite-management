@@ -98,3 +98,15 @@ interface total{
 interface today{
   confirm:string //新增确诊
 }
+
+
+interface userList{
+  code:number
+  data:wxUser[]
+  msg:string
+}
+interface wxUser{
+  id:string,
+  nickname:string,
+  sex:string
+}

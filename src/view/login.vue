@@ -35,7 +35,6 @@
       </el-form-item>
       </el-form>
     </div>
-    
   </el-card>
 </template>
 

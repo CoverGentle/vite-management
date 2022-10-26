@@ -9,6 +9,7 @@ export default {
     component:'component',
     markdown:'markdownEdit',
     quill:'quillEdit',
+    calendar:'calendar'
   },
   // 表格
   table:{

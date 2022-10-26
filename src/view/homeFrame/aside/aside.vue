@@ -3,7 +3,7 @@
     <div class="logo-box">
       <h3>logo</h3>
     </div>
-    
+
     <el-menu :collapse="isDisplay" default-active="/firstView" router class="el-menu-vertical-demo" @open="handleOpen"
       @close="handleClose">
       <!-- <el-sub-menu index="1">
@@ -31,50 +31,61 @@
         </el-icon>
         <span>{{ $t('menus.home') }}</span>
       </el-menu-item>
-      <el-menu-item index="/userManagement">
-        <el-icon>
-          <User />
-        </el-icon>
-        <span>{{ $t('menus.user') }}</span>
-      </el-menu-item>
+
       <!-- <el-menu-item index="3" disabled>
       <el-icon>
         <document />
       </el-icon>
       <span>Navigator Three</span>
     </el-menu-item> -->
-      <el-menu-item index="/setting">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>{{$t('menus.setting')}}</span>
-      </el-menu-item>
+
       <el-menu-item index="/weather">
         <el-icon>
           <MostlyCloudy />
         </el-icon>
-        <span>{{$t('menus.weather')}}</span>
+        <span>{{ $t('menus.weather') }}</span>
       </el-menu-item>
       <el-menu-item index="/epidemic">
         <el-icon>
           <MapLocation />
         </el-icon>
-        <span>{{$t('menus.epidemic')}}</span>
+        <span>{{ $t('menus.epidemic') }}</span>
       </el-menu-item>
-      <el-sub-menu index="">
+      <el-sub-menu index="1">
         <template #title>
           <el-icon>
             <Box />
           </el-icon>
-          <span>{{$t('menus.component')}}</span>
+          <span>{{ $t('menus.component') }}</span>
         </template>
         <!-- <el-menu-item-group title="Group One"> -->
-          <el-menu-item index="/markdown">
-            {{$t('menus.markdown')}}
-          </el-menu-item>
-          <el-menu-item index="/quill">{{$t('menus.quill')}}</el-menu-item>
+        <el-menu-item index="/markdown">
+          {{ $t('menus.markdown') }}
+        </el-menu-item>
+        <el-menu-item index="/quill">{{ $t('menus.quill') }}</el-menu-item>
+        <el-menu-item index="/calendar">{{ $t('menus.calendar') }}</el-menu-item>
         <!-- </el-menu-item-group> -->
       </el-sub-menu>
+      <el-sub-menu index="2">
+        <template #title>
+          <el-icon>
+            <User />
+          </el-icon>
+          <span>{{ $t('menus.user') }}</span>
+        </template>
+        <el-menu-item index="/userManagement">
+          <span>{{ $t('menus.systemUser') }}</span>
+        </el-menu-item>
+        <el-menu-item index="/wechatUser">
+          <span>{{ $t('menus.wechatUser') }}</span>
+        </el-menu-item>
+      </el-sub-menu>
+      <el-menu-item index="/setting">
+        <el-icon>
+          <setting />
+        </el-icon>
+        <span>{{ $t('menus.setting') }}</span>
+      </el-menu-item>
 
       <!-- <el-menu-item index="/component">
       <el-icon>
@@ -82,7 +93,7 @@
       </el-icon>
       <span>{{$t('menus.component')}}</span>
     </el-menu-item>-->
-  </el-menu> 
+    </el-menu>
   </div>
 </template>
 
@@ -109,8 +120,8 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 
 const props = defineProps<{
-  isDisplay:boolean
- }>()
+  isDisplay: boolean
+}>()
 const isCollapse = ref(false)
 const emit = defineEmits<{
   (event: 'changeWidth', id: boolean): void
@@ -125,6 +136,7 @@ const toggleCollapse = () => {
 .aside-contianer {
   height: 100%;
   border-right: solid 1px var(--el-menu-border-color);
+
   .logo-box {
     width: var(--el-aside-width, 180px);
     height: 40px;
@@ -136,10 +148,11 @@ const toggleCollapse = () => {
       line-height: 40px;
     }
   }
-  .el-menu{
-    border-right:0
+
+  .el-menu {
+    border-right: 0
   }
-  
+
 }
 
 // .el-menu-vertical-demo:not(.el-menu--collapse) {

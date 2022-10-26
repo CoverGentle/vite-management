@@ -64,3 +64,13 @@ export const getEpidemicInfo = ()=>{
   }
   )
 }
+
+// 获取用户列表
+export const getwxUserListInfo = ()=>{
+  return request<userList>(
+    {
+      url:'/wechat/getwxUserListInfo',
+      method:'get'
+    }
+  )
+}
