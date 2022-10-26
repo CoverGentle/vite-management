@@ -1,13 +1,13 @@
-import axios from 'axios'
+import axios,{AxiosResponse,AxiosRequestConfig} from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:7001/',
+  baseURL: import.meta.env.VITE_BASE_API,
   timeout: 10000
 })
 
 // 拦截
 instance.interceptors.request.use(
-  config => {
+  (config:AxiosRequestConfig) => {
     let token = localStorage.getItem('token')
     if(token){
       config.headers = config.headers || {}
@@ -15,17 +15,22 @@ instance.interceptors.request.use(
     }
     return config
   },
-  error => {
+  (error: any) => {
     return Promise.reject(error)
   })
 
 // 响应
 instance.interceptors.response.use(
-  result => {
-    return result.data
+  (response: AxiosResponse) => {
+    return response.data
   },
-  error => {
+  (error: any) => {
     return Promise.reject(error)
   })
 
-  export default instance
+  // export default instance
+  export default <T = any>(config: AxiosRequestConfig) => {
+    return instance(config).then((res) => {
+      return res as unknown as T
+    })
+  }
