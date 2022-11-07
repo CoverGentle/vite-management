@@ -74,3 +74,14 @@ export const getwxUserListInfo = ()=>{
     }
   )
 }
+
+// 删除用户
+export const deleteUser = (data:{id:any})=>{
+  return request<Infomation>(
+    {
+      url:'/user/deleteUser',
+      method:'post',
+      data
+    }
+  )
+}

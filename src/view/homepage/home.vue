@@ -9,7 +9,7 @@
           <Header @command="updateLanguage" @handleShowMore="updateShow"></Header>
         </el-header>
         <el-main>
-          <router-view></router-view>
+          <router-view v-if="isRouterActive"></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -23,13 +23,23 @@ import zhCn from "element-plus/lib/locale/lang/zh-cn";
 import en from "element-plus/lib/locale/lang/en";
 import i18n from '../../i18n/index'
 import { useI18n } from "vue-i18n";
-import { ref, computed } from "vue";
+import { ref, computed,provide,nextTick  } from "vue";
+
+// 刷新当前页
+const isRouterActive = ref(true)
+provide('reload',()=>{
+  isRouterActive.value = false
+  nextTick(()=>{
+    isRouterActive.value = true
+  })
+})
+
+// 国际化
 const language = ref('zh-cn');
 const locale = computed(() => (language.value === 'zh-cn' ? zhCn : en))
-
 const { locale: localeLanguage } = useI18n();
 const isShow = ref(false)
-// 国际化
+
 const updateLanguage = (val: any) => {
   if (val === 'zh-cn') {
     language.value = 'zh-cn'

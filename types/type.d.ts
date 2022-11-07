@@ -13,6 +13,12 @@ interface AdminLoginRes {
   msg: string
 }
 
+interface Infomation {
+  code: number
+  data?:object
+  msg: string
+}
+
 // 用户列列表
 interface UserList {
   code: number
