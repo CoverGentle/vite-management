@@ -40,7 +40,7 @@
 
 <script setup lang='ts'>
 import { ElMessage } from 'element-plus'
-import { reactive, toRefs, ref } from 'vue';
+import { reactive, toRefs, ref, inject } from 'vue';
 import { useRouter } from 'vue-router';
 import { jwtLogin,registerUser } from '../untils/api/index'
 const state = reactive({
@@ -121,6 +121,7 @@ const acceptForm = ()=>{
       if(res.code === 2000){
         isBox.value = true
         ElMessage.success(res.msg)
+        router.push('/')
       }else{
         ElMessage.error(res.msg)
       }
