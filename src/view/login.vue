@@ -93,6 +93,8 @@ const submitForm = async () => {
       password: ruleForm.value.password
     })
       .then((res) => {
+        console.log(res);
+        
         if (res.code == 2000) {
           localStorage.setItem('token', res.token)
           router.push('/home')
